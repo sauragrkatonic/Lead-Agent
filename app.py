@@ -18,9 +18,9 @@ load_dotenv()
 # Set API keys
 #os.environ["GROQ_API_KEY"] = os.environ.get('GROQ_API_KEY', '')
 llm = ChatGroq(
-    model="groq/llama-3.1-8b-instant",  # or other Groq models
+    model="llama-3.1-8b-instant",  # or other Groq models
     temperature=0.3,
-    groq_api_key=os.getenv("GROQ_API_KEY")
+    api_key=os.getenv("GROQ_API_KEY")
 )
 
 from src.crew.lead_crew import run_email_qualification, run_form_qualification
