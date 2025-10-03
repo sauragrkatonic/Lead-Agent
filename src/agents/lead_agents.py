@@ -3,10 +3,11 @@ Define all CrewAI agents for lead qualification
 """
 
 from crewai import Agent
-from langchain_openai import ChatOpenAI
+#from langchain_openai import ChatOpenAI
+from langchain_groq import ChatGroq
 
 
-def create_lead_qualification_agents(model_name="gpt-4o"):
+def create_lead_qualification_agents(model_name="groq/llama-3.1-8b-instant"):
     """
     Create all agents needed for lead qualification
     
@@ -14,7 +15,7 @@ def create_lead_qualification_agents(model_name="gpt-4o"):
         dict: Dictionary of agent instances
     """
     
-    llm = ChatOpenAI(model=model_name, temperature=0.3)
+    llm = ChatGroq(model=model_name, temperature=0.3)
     
     email_parser = Agent(
         role='Email Information Extractor',
