@@ -92,7 +92,7 @@ def katonic_llm_wrapper(query, model_id, user_email, project_name, model_name):
                 response=response[:500] if status == "success" else response,
                 user_name=user_email,
                 model_name=model_name,
-                product_type="Ace",
+                product_type="AI Studio",
                 product_name="Lead Qualification System",
                 project_name=project_name,
                 latency=latency,
@@ -111,7 +111,7 @@ def katonic_llm_wrapper(query, model_id, user_email, project_name, model_name):
 # Import CrewAI functions
 try:
     from src.crew.lead_crew_simple import run_email_qualification_simple, run_form_qualification_simple
-    crewai_available = True
+    crew_avlable = True
 except ImportError:
     st.warning("⚠️ CrewAI integration not available. Using direct Katonic LLM instead.")
     crewai_available = False
@@ -739,7 +739,7 @@ if email_submitted or form_submitted:
                     response=parsed_result.get('analysis_summary', '')[:500],
                     user_name=user_email,
                     model_name=config['model'],
-                    product_type="Ace",
+                    product_type="AI Studio",
                     product_name="Lead Qualification System",
                     project_name=project_name,
                     latency=total_latency,
@@ -765,7 +765,7 @@ if email_submitted or form_submitted:
                     response=f"Error: {str(e)}",
                     user_name=user_email,
                     model_name=config['model'],
-                    product_type="Ace",
+                    product_type="AI Studio",
                     product_name="Lead Qualification System",
                     project_name=project_name,
                     latency=processing_time,
@@ -1173,7 +1173,7 @@ st.markdown(f"""
 #                 response=response[:500] if status == "success" else response,  # Limit response length
 #                 user_name=user_email,
 #                 model_name=model_name,
-#                 product_type="Ace",
+#                 product_type="AI Studio",
 #                 product_name="Lead Qualification System",
 #                 project_name=project_name,
 #                 latency=latency,
@@ -1692,7 +1692,7 @@ st.markdown(f"""
 #                     response=str(parsed_result.get('raw_output', '')[:500]),
 #                     user_name=user_email,
 #                     model_name=config['model'],
-#                     product_type="Ace",
+#                     product_type="AI Studio",
 #                     product_name="Lead Qualification System",
 #                     project_name=project_name,
 #                     latency=total_latency,
@@ -1718,7 +1718,7 @@ st.markdown(f"""
 #                     response=f"Error: {str(e)}",
 #                     user_name=user_email,
 #                     model_name=config['model'],
-#                     product_type="Ace",
+#                     product_type="AI Studio",
 #                     product_name="Lead Qualification System",
 #                     project_name=project_name,
 #                     latency=processing_time,
