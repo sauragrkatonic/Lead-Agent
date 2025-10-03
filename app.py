@@ -11,9 +11,17 @@ import os
 import re
 import json
 from datetime import datetime
+from langchain_groq import ChatGroq
+from dotenv import load_dotenv
+load_dotenv()
 
 # Set API keys
-os.environ["OPENAI_API_KEY"] = os.environ.get('OPENAI_API_KEY', '')
+#os.environ["GROQ_API_KEY"] = os.environ.get('GROQ_API_KEY', '')
+llm = ChatGroq(
+    model="groq/llama-3.1-8b-instant",  # or other Groq models
+    temperature=0.3,
+    groq_api_key=os.environ.get("GROQ_API_KEY")
+)
 
 from src.crew.lead_crew import run_email_qualification, run_form_qualification
 from src.utils.validators import validate_email, validate_form_data
@@ -125,11 +133,16 @@ def render_sidebar():
         st.header("⚙️ Configuration")
         
         st.subheader("🤖 Model Selection")
+        # model = st.selectbox(
+        #     "Choose OpenAI Model",
+        #     options=["gpt-4o", "gpt-4o-mini", "gpt-4-turbo"],
+        #     index=0,
+        #     help="Select the OpenAI model for CrewAI agents"
+        # )
         model = st.selectbox(
-            "Choose OpenAI Model",
-            options=["gpt-4o", "gpt-4o-mini", "gpt-4-turbo"],
-            index=0,
-            help="Select the OpenAI model for CrewAI agents"
+            "Choose Model",
+            options=["groq/llama-3.1-70b-versatile","groq/llama-3.1-8b-instant","mixtral-8x7b-32768"],
+            index=0
         )
         
         st.subheader("🎯 Lead Qualification Setup")
@@ -204,7 +217,7 @@ with col2:
 config = render_sidebar()
 
 # Check API key
-if not os.environ.get("OPENAI_API_KEY"):
+if not os.environ.get("GROQ_API_KEY"):
     st.error("⚠️ Please set your OPENAI_API_KEY environment variable")
     st.info("Create a .env file with: OPENAI_API_KEY=your_key_here")
     st.stop()
