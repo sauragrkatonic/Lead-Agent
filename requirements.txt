@@ -1,0 +1,40 @@
+# Core Web Framework
+streamlit==1.39.0
+
+# CrewAI Framework
+crewai==0.86.0
+crewai-tools==0.17.0
+
+# LangChain and OpenAI
+langchain==0.3.7
+langchain-openai==0.2.8
+langchain-community==0.3.7
+langchain-core==0.3.15
+openai==1.54.3
+
+# Database and Vector Storage
+chromadb==0.5.20
+pysqlite3-binary==0.5.2.post1
+
+# Data Validation and Processing
+pydantic==2.10.2
+pydantic-settings==2.6.1
+
+# Environment Management
+python-dotenv==1.0.1
+
+# Utilities
+typing-extensions==4.12.2
+requests==2.32.3
+
+# Optional: Web Scraping and Search
+# Uncomment these if you want to add web scraping capabilities
+# firecrawl-py==0.0.16
+# duckduckgo-search==6.3.5
+# beautifulsoup4==4.12.3
+# selenium==4.26.1
+
+# Optional: Additional CrewAI Tools
+# Uncomment for enhanced agent capabilities
+# wikipedia==1.4.0
+# youtube-transcript-api==0.6.2
