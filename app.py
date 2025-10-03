@@ -43,7 +43,7 @@ st.session_state.GROQ_API_KEY = st.sidebar.text_input(
     type="password"
 )
 
-llm = None
+#llm = None
 if st.session_state.GROQ_API_KEY:
     try:
         llm = ChatGroq(
