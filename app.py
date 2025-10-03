@@ -38,14 +38,7 @@ with st.sidebar:
     model_name = st.selectbox(
         "Model Name (for logging) *",
         options=[
-            "Openai/gpt-4o",
-            "Openai/gpt-4o-mini", 
-            "Openai/gpt-4-turbo",
-            "Openai/gpt-4",
-            "anthropic/claude-3-5-sonnet-20241022",
-            "anthropic/claude-3-opus-20240229",
-            "google/gemini-1.5-pro",
-            "google/gemini-1.5-flash"
+            "Openai/gpt-4o"
         ],
         index=0,
         help="Select the model name for request logging (use lowercase provider names)"
