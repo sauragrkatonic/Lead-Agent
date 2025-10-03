@@ -7,7 +7,7 @@ from src.agents.lead_agents import create_lead_qualification_agents
 from src.tasks.lead_tasks import create_email_tasks, create_form_tasks
 
 
-def run_email_qualification(sender_email, email_subject, email_content, target_config, model_name="gpt-4o"):
+def run_email_qualification(sender_email, email_subject, email_content, target_config, model_name="groq/llama-3.1-70b-versatile"):
     """
     Run email-based lead qualification with CrewAI
     
@@ -45,8 +45,8 @@ def run_email_qualification(sender_email, email_subject, email_content, target_c
     result = crew.kickoff()
     return result
 
-
-def run_form_qualification(name, company, designation, email, query, target_config, model_name="gpt-4o"):
+#llama
+def run_form_qualification(name, company, designation, email, query, target_config, model_name="groq/llama-3.1-8b-instant"):
     """
     Run form-based lead qualification with CrewAI
     
