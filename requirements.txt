@@ -2,15 +2,16 @@
 streamlit==1.39.0
 
 # CrewAI Framework
-crewai==0.86.0
-crewai-tools==0.17.0
+crewai 
+crewai-tools
 
 # LangChain and OpenAI
-langchain==0.3.7
-langchain-openai==0.2.8
-langchain-community==0.3.7
-langchain-core==0.3.15
-openai==1.54.3
+langchain 
+#langchain-openai #==0.2.8
+langchain-groq
+langchain-community 
+langchain-core 
+#openai==1.54.3
 
 # Database and Vector Storage
 chromadb==0.5.20
