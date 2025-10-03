@@ -17,12 +17,26 @@ load_dotenv()
 
 # Set API keys
 #os.environ["GROQ_API_KEY"] = os.environ.get('GROQ_API_KEY', '')
+st.set_page_config(
+    page_title="CrewAI Lead Qualification",
+    page_icon="🎯",
+    layout="wide",
+    initial_sidebar_state="expanded"
+)
 
-api_key = os.getenv("GROQ_API_KEY")
+with st.sidebar:
+    st.subheader("🔑 API Configuration")
+    groq_api_key_input = st.text_input(
+        "Enter your GROQ API Key",
+        type="password",
+        placeholder="sk-xxxx",
+        help="Your Groq API key for LLM access"
+    )
+
 llm = ChatGroq(
-    model="llama-3.1-8b-instant",  # or other Groq models
+    model="groq/llama-3.1-8b-instant",  # or other Groq models
     temperature=0.3,
-    api_key=api_key
+    groq_api_key=groq_api_key_input #os.environ.get("GROQ_API_KEY")
 )
 
 from src.crew.lead_crew import run_email_qualification, run_form_qualification
@@ -33,12 +47,12 @@ from src.utils.result_parser import parse_crew_result
 #         Streamlit App          #
 #--------------------------------#
 
-st.set_page_config(
-    page_title="CrewAI Lead Qualification",
-    page_icon="🎯",
-    layout="wide",
-    initial_sidebar_state="expanded"
-)
+# st.set_page_config(
+#     page_title="CrewAI Lead Qualification",
+#     page_icon="🎯",
+#     layout="wide",
+#     initial_sidebar_state="expanded"
+# )
 
 # Custom CSS
 st.markdown("""
@@ -219,10 +233,10 @@ with col2:
 config = render_sidebar()
 
 # Check API key
-if not os.environ.get("GROQ_API_KEY"):
-    st.error("⚠️ Please set your OPENAI_API_KEY environment variable")
-    st.info("Create a .env file with: OPENAI_API_KEY=your_key_here")
-    st.stop()
+# if not os.environ.get("GROQ_API_KEY"):
+#     st.error("⚠️ Please set your OPENAI_API_KEY environment variable")
+#     st.info("Create a .env file with: OPENAI_API_KEY=your_key_here")
+#     st.stop()
 
 # Main content
 st.markdown("---")
