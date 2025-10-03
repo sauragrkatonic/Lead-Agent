@@ -24,20 +24,43 @@ st.set_page_config(
     initial_sidebar_state="expanded"
 )
 
-with st.sidebar:
-    st.subheader("🔑 API Configuration")
-    groq_api_key_input = st.text_input(
-        "Enter your GROQ API Key",
-        type="password",
-        placeholder="sk-xxxx",
-        help="Your Groq API key for LLM access"
-    )
+# with st.sidebar:
+#     st.subheader("🔑 API Configuration")
+#     groq_api_key_input = st.text_input(
+#         "Enter your GROQ API Key",
+#         type="password",
+#         placeholder="sk-xxxx",
+#         help="Your Groq API key for LLM access"
+#     )
 
-llm = ChatGroq(
-    model="groq/llama-3.1-8b-instant",  # or other Groq models
-    temperature=0.3,
-    groq_api_key=groq_api_key_input #os.environ.get("GROQ_API_KEY")
+st.sidebar.header("🔑 Groq API Key")
+if "GROQ_API_KEY" not in st.session_state:
+    st.session_state.GROQ_API_KEY = ""
+
+st.session_state.GROQ_API_KEY = st.sidebar.text_input(
+    "Enter your Groq API Key",
+    value=st.session_state.GROQ_API_KEY,
+    type="password"
 )
+
+llm = None
+if st.session_state.GROQ_API_KEY:
+    try:
+        llm = ChatGroq(
+            model="groq/llama-3.1-8b-instant",
+            temperature=0.3,
+            groq_api_key=st.session_state.GROQ_API_KEY
+        )
+    except Exception as e:
+        st.error(f"❌ Failed to initialize Groq LLM: {e}")
+else:
+    st.warning("⚠️ Please enter your Groq API key in the sidebar to enable the AI model.")
+
+# llm = ChatGroq(
+#     model="groq/llama-3.1-8b-instant",  # or other Groq models
+#     temperature=0.3,
+#     groq_api_key=groq_api_key_input #os.environ.get("GROQ_API_KEY")
+# )
 
 from src.crew.lead_crew import run_email_qualification, run_form_qualification
 from src.utils.validators import validate_email, validate_form_data
